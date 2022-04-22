@@ -8,7 +8,7 @@ function loadMenuPage() {
     heroImage.src = "http://placekitten.com/200/300";
     heroImage.alt = "Restaurant image";
 
-    const heroText = document.createElement('p1');
+    const heroText = document.createElement('p');
     heroText.textContent = "A restaurant where you can enjoy your pleasantly warm evening, with the most relaxing drinks and eats.";
 
     websiteContent.appendChild(headline);
