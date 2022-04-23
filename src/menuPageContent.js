@@ -1,3 +1,4 @@
+import iconTitleBackground from './images/itemTitleBackground.png';
 
 function loadMenuPage() {
     
@@ -15,6 +16,8 @@ function loadMenuPage() {
     
         const drinks = document.createElement('h1');
         drinks.textContent = "Drinks";
+        drinks.style.backgroundImage = `url(${iconTitleBackground})`;
+        drinks.classList.add('itemTitle');
     
         websiteContent.appendChild(drinks);
     
@@ -52,6 +55,8 @@ function loadMenuPage() {
     
         const eats = document.createElement('h1');
         eats.textContent = "Eats";
+        eats.style.backgroundImage = `url(${iconTitleBackground})`;
+        eats.classList.add('itemTitle');
     
         websiteContent.appendChild(eats);
     

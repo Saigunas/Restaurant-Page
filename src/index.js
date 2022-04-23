@@ -1,6 +1,16 @@
 import {loadHomePage} from './homePageContent';
 import {loadMenuPage} from './menuPageContent';
 import {loadContactPage} from './contactPageContent';
+import websiteBackground from './images/websiteBackground.jpg';
+
+
+function loadBackgroundImage() {
+    const backgroundImage = document.createElement('img');
+    backgroundImage.src = websiteBackground;
+    backgroundImage.alt = '';
+    backgroundImage.classList.add('background-image');
+    document.body.appendChild(backgroundImage);
+}
 
 const header = document.createElement('div');
 header.id = "header";
@@ -29,9 +39,9 @@ function loadHeader() {
         menuTab.classList.remove('selected');
         contactTab.classList.remove('selected');
 
-        window.scrollTo(0,0); 
-
         loadHomePage();
+        //This is to fix scrollTo not executing
+        setTimeout(function() {window.scrollTo(0, 0);},5)
     });
     menuTab.addEventListener('click', () => {
         content.innerHTML = '';
@@ -40,9 +50,9 @@ function loadHeader() {
         menuTab.classList.add('selected');
         contactTab.classList.remove('selected');
 
-        window.scrollTo(0,0); 
-
         loadMenuPage();
+
+        setTimeout(function() {window.scrollTo(0, 0);},5) 
     });
     contactTab.addEventListener('click', () => {
         content.innerHTML = '';
@@ -51,24 +61,44 @@ function loadHeader() {
         menuTab.classList.remove('selected');
         contactTab.classList.add('selected');
 
-        window.scrollTo(0,0); 
-
         loadContactPage();
+        
+        setTimeout(function() {window.scrollTo(0, 0);},5)
     });
+    document.body.appendChild(header);
 }
 
 
+//This is where pages appear
 const content = document.createElement('div');
-content.id = "content";
+function loadContentDiv() {
+    content.id = "content";
+    document.body.appendChild(content);
+}
+
+
+
+function loadFooter() {
+    const footer = document.createElement('div');
+    footer.id = 'footer';
+    document.body.appendChild(footer);
+
+    const copyright = document.createElement('p');
+    copyright.textContent = "Website made by Saigunas";
+    copyright.id = 'copyright';
+
+    footer.appendChild(copyright);
+}
 
 
 const loadPage = (function () {
-
-    document.body.appendChild(header);
-    document.body.appendChild(content);
     
+    loadBackgroundImage();
     loadHeader();
+    loadContentDiv(); //this is where home page and others appear
     loadHomePage();
+    loadFooter();
+
     document.querySelector('#homeTab').classList.add('selected');
     
 }());
