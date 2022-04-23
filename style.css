@@ -8,27 +8,64 @@ html {
 
 :root {
     --header-padding: 3vh;
-    --header-font-size: 1.2rem;
+    --header-font-size: 1.5rem;
     --header-font-color: black;
-    --header-selected-color: red;
+    --header-selected-color: #c6001a;
     --header-height: 4rem;
-    --header-background-color: white;
+    --header-background-color: rgba(255, 255, 255, 0.74);
 
+    --content-title-color: white;
+    --content-title-height: 6rem;
 
     --content-p-padding: 2rem;
     --content-item-padding: 1rem;
-    --content-border-radius: 5px;
+    --content-border-radius: 0px;
+    --content-item-border: 3px solid black;
 
-    --menu-item-background: rgb(227, 227, 255);
+    --menu-item-background: rgba(255, 255, 255, 0.9);
+
+    --footer-background-color: rgba(255, 255, 255, 0.74);
+}
+
+@font-face {
+    font-family: 'earwig_factoryregular';
+    src: url('./fonts/earwig_factory_rg-webfont.woff2') format('woff2'),
+         url('./fonts/earwig_factory_rg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'personified_uxregular';
+    src: url('./fonts/personifieduxregular-webfont.woff2') format('woff2'),
+         url('./fonts/personifieduxregular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+    font-family: 'earwig_factoryregular';
+    background-color: black;
 }
 
+.background-image {  
+    position: fixed;  
+    z-index:-1;
+    top: 0; 
+    left: 0; 
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    filter: brightness(35%);
+} 
+
 #header {
+    z-index: 2;
     position: fixed;
     top: 0;
     width: 100%;
@@ -42,8 +79,12 @@ body {
 
 #header p { 
     display: flex;
-    height: 4rem;
+    height: var(--header-height);
     align-items: center;
+}
+
+#header p:hover {
+    cursor: pointer;
 }
 
 #header .selected {
@@ -52,24 +93,87 @@ body {
 
 #content {
     margin-top: var(--header-height);
+    padding-bottom: var(--content-p-padding);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--header-padding);
+    width: 90vw;
+    max-width: 40rem;
 }
 
+
 #content h1 {
-    font-size: 2rem;
+    white-space: nowrap;
+    font-size: 2.5rem;
     padding: var(--header-padding);
+    width: fit-content;
+    height: fit-content;
+}
+
+#content .pageTitle {
+    color: var(--content-title-color);
+    display: flex;
+    margin-top: var(--content-item-padding);
+    padding-right: 3rem;
+    align-items: flex-end;
+    padding-bottom: 0.8rem;
+    background-size: 100% 100%; 
+    height: var(--content-title-height);
+}
+
+#content .itemTitle {
+    color: var(--content-title-color);
+    display: flex;
+    align-items: flex-end;
+    margin-top: var(--content-item-padding);
+    padding-bottom: 1.5rem;
+    background-size: 100% 100%;
+    filter: drop-shadow(1px 1px 0 white)
+        drop-shadow(-1px 1px 0 white)
+        drop-shadow(1px -1px 0 white)
+        drop-shadow(-1px -1px 0 white);
+}
+
+#content .heroContainer {
+    border: var(--content-item-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--header-padding);
+    background-color: var(--menu-item-background);
+    padding: var(--content-item-padding);
+    border-radius: var(--content-border-radius);
+}
+
+#content .morganaImage {
+    height: 12rem;
 }
 
 #content p {
-    width: 90vw;
-    max-width: 40rem;
+    font-size: 1.2rem;
     text-align: center;
+    font-family: "personified_uxregular";
+}
+
+#content #takeTimeImg {
+    margin-top: 6rem;
+    justify-self: flex-end;
+    height: 12rem;
+}
+
+.animateSpin {
+    animation-name: spin;
+    animation-duration: 0.5s;
+}
+
+@keyframes spin {
+    0%   {}
+    100% {rotate: y 360deg;}
 }
 
 .item {
+    border: var(--content-item-border);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,4 +207,24 @@ body {
     width: auto;
     max-width: auto;
     text-align: left;
+}
+
+#content .contacts {
+    color: white;
+    font-size: 1.5rem;
+}
+
+
+#restaurantImage {
+    height: 15rem;
+}
+
+
+#footer {
+    font-size: 1.5rem;
+    margin-top: auto;
+    padding: var(--content-item-padding);
+    background-color: var(--footer-background-color);
+    width: 100%;
+    text-align: center;
 }
